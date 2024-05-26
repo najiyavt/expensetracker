@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-//const helmet = require("helmet");
+const helmet = require("helmet");
 const morgan = require('morgan');
 const path = require('path')
 const fs = require('fs');
@@ -24,7 +24,7 @@ const ForgotPasswordRequests = require('./models/ForgotPasswordRequests');
 const DownloadedFiles = require('./models/downloadedFiles')
 
 app.use(cors());
-//app.use(helmet());
+app.use(helmet());
 app.use(bodyParser.json());
 const accessLogStream = fs.createWriteStream(
    path.join(__dirname, 'access.log'),

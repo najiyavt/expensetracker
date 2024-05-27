@@ -8,7 +8,7 @@ async function submitForm(event) {
     };
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.post('http://localhost:8000/expense/addExpense', expenseDetails, {
+        const response = await axios.post('http://13.50.241.66:8000/expense/addExpense', expenseDetails, {
             headers: { "Authorization": token }
         });
         event.target.reset();
@@ -39,7 +39,7 @@ async function displayExpenses(expense) {
             displayPremiumStatus();
             displayRecords();
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:8000/expense/${expense.id}`, {
+            await axios.delete(`http://13.50.241.66:8000/expense/${expense.id}`, {
                 headers: { "Authorization": token }
             });
             li.remove();
@@ -57,7 +57,7 @@ async function fetchExpenses(page=1){
     const pageSize= localStorage.getItem('pageSize') || 5 ;
     try{
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:8000/expense/getExpense?page=${page}&pageSize=${pageSize}`, {
+        const response = await axios.get(`http://13.50.241.66:8000/expense/getExpense?page=${page}&pageSize=${pageSize}`, {
             headers: { "Authorization": token }
         });
       
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 document.getElementById('premium').onclick = async function(event) {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8000/purchase/premiumPurchase', {
+        const response = await axios.get('http://13.50.241.66:8000/purchase/premiumPurchase', {
             headers: { 'Authorization': token }
         });
         var options = {
@@ -116,7 +116,7 @@ document.getElementById('premium').onclick = async function(event) {
             'name': 'Expense Tracker App',
             'handler': async function(response) {
                 try {
-                    const updateTransactionStatus = await axios.post('http://localhost:8000/purchase/updateTransactionStatus', {
+                    const updateTransactionStatus = await axios.post('http://13.50.241.66:8000/purchase/updateTransactionStatus', {
                         order_id: options.order_id,
                         payment_id: response.razorpay_payment_id,
                     }, {
@@ -136,7 +136,7 @@ document.getElementById('premium').onclick = async function(event) {
 
         rzp1.on('payment.failed', async function(response) {
             try {
-                const updateOrderStatus = await axios.post('http://localhost:8000/purchase/updateOrderStatus', {
+                const updateOrderStatus = await axios.post('http://13.50.241.66:8000/purchase/updateOrderStatus', {
                     order_id: options.order_id,
                 }, {
                     headers: { 'Authorization': token }
@@ -156,7 +156,7 @@ document.getElementById('premium').onclick = async function(event) {
 document.getElementById('leaderButton').onclick = async function(event) {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8000/premium/showLeaderBoard', {
+        const response = await axios.get('http://13.50.241.66:8000/premium/showLeaderBoard', {
             headers: { 'Authorization': token }
         });
         const resData = response.data;
@@ -177,7 +177,7 @@ document.getElementById('leaderButton').onclick = async function(event) {
 async function displayPremiumStatus() {
     try {
         const token = localStorage.getItem('token');
-        const statusResponse = await axios.get('http://localhost:8000/purchase/getStatus', {
+        const statusResponse = await axios.get('http://13.50.241.66:8000/purchase/getStatus', {
             headers: { 'Authorization': token }
         });
         const isPremium = statusResponse.data.status;
@@ -198,7 +198,7 @@ async function displayPremiumStatus() {
 document.getElementById('downloadBtn').onclick = async function(event) {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8000/user/download', {
+        const response = await axios.get('http://13.50.241.66:8000/user/download', {
             headers: { 'Authorization': token }
         });
         if (response.status === 201) {
@@ -219,7 +219,7 @@ async function displayRecords() {
     try {
         document.getElementById('recordsDiv').style.display = 'block';
         const token = localStorage.getItem('token');
-        const record = await axios.get('http://localhost:8000/user/downloadRecords', {
+        const record = await axios.get('http://13.50.241.66:8000/user/downloadRecords', {
             headers: { 'Authorization': token }
         });
        

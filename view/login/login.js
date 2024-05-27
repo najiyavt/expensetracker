@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('password').value;
 
         try {
-            const response = await axios.get(`http://localhost:8000/user/login/${email}/${password}` );
+            const response = await axios.get(`http://13.50.241.66:8000/user/login/${email}/${password}` );
             console.log(response);
                 localStorage.setItem('token' , response.data.token);
                 alert('Login successful');
@@ -35,7 +35,7 @@ async function submitEmailForm(event){
     const email = document.getElementById('emailForgt').value;
 
     try{
-        const response = await axios.post(`http://localhost:8000/password/forgotpassword` , {email});
+        const response = await axios.post(`http://13.50.241.66:8000/password/forgotpassword` , {email});
         
         alert('Reset email sent successfully!');
         document.getElementById('emailForm').style.display = 'none';

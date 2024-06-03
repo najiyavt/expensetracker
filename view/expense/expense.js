@@ -153,6 +153,7 @@ document.getElementById('premium').onclick = async function(event) {
     }
 };
 
+
 document.getElementById('leaderButton').onclick = async function(event) {
     try {
         const token = localStorage.getItem('token');

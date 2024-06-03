@@ -31,13 +31,13 @@ exports.downloadExpense = async(req,res) => {
 
 exports.downloadRecords = async (req,res ) => {
     try{
-        // const isPremiumUser = req.user.isPremiumUser;
-        // if(isPremiumUser){
+        const isPremiumUser = req.user.isPremiumUser;
+        if(isPremiumUser){
         const downloadRecoards = await DownloadedFiles.findAll({where: {UserId:req.user.id}});
         res.status(201).json(downloadRecoards)
-        // }else{
-        //     res.status(401).json({ success: false, message: "Unauthorized : you are not a premium user" });
-        // }
+        }else{
+            res.status(401).json({ success: false, message: "Unauthorized : you are not a premium user" });
+        }
     }catch(err) {
         console.error('Error fetching:', err);
         res.status(500).json({ error: 'Failed to fetch' ,err:err});

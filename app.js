@@ -54,7 +54,8 @@ User.hasMany(DownloadedFiles);
 DownloadedFiles.belongsTo(User);
 
 app.use((req , res) => {
-   console.log('urrlll----->',req.url)
+   console.log('urrlll----->',req.url);
+   console.log('succesffull----->');
    res.sendFile(path.join(__dirname, `view/${req.url}`))
 })
 

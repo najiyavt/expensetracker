@@ -27,7 +27,7 @@ exports.forgotpassword = async (req, res) => {
             sender,
             to: receivers,
             subject: 'Hi there!! Reset your password',
-            htmlContent: `<a href = 'http://13.50.241.66:8000/password/resetpassword/${id}'>Reset your password</a>`
+            htmlContent: `<a href = 'http://localhost:8000/password/resetpassword/${id}'>Reset your password</a>`
         });
         res.status(200).json({ message: 'Reset email sent successfully' });
     } catch (error) {

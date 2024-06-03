@@ -7,7 +7,7 @@ async function submitForm(event) {
         password:event.target.password.value
     }
     try {
-        const response= await axios.post(`http://13.50.241.66:8000/user/signup`,userDetails);
+        const response= await axios.post(`/user/signup`,userDetails);
         signupMsg.textContent = 'Sign up successful!';
         event.target.reset();
         alert('Sign up successful!')
